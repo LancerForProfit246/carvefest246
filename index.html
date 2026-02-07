@@ -729,97 +729,126 @@
     </div>
   </footer>
 
-  <script>
-    // Countdown Timer
-    const targetDate = new Date("2026-02-27T10:00:00-04:00").getTime();
+ <script>
+  // Countdown Timer
+  const targetDate = new Date("2026-02-27T10:00:00-04:00").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      let diff = targetDate - now;
+  function updateCountdown() {
+    const now = new Date().getTime();
+    let diff = targetDate - now;
 
-      if (diff <= 0) {
-        document.querySelectorAll('.countdown .number').forEach(el => el.textContent = "NOW OPEN");
-        document.querySelectorAll('.countdown .label').forEach(el => el.textContent = "");
-        return;
-      }
-
-      const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById("days").textContent    = String(days).padStart(2, '0');
-      document.getElementById("hours").textContent   = String(hours).padStart(2, '0');
-      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    if (diff <= 0) {
+      document.querySelectorAll('.countdown .number').forEach(el => el.textContent = "NOW OPEN");
+      document.querySelectorAll('.countdown .label').forEach(el => el.textContent = "");
+      return;
     }
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+    const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-    // Hero Slideshow
-    document.addEventListener('DOMContentLoaded', () => {
-      const slideshow = document.getElementById('heroSlideshow');
-      const totalImages = 25;
-      let current = 0;
+    document.getElementById("days").textContent    = String(days).padStart(2, '0');
+    document.getElementById("hours").textContent   = String(hours).padStart(2, '0');
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+  }
 
-      function showImage(index) {
-        slideshow.style.opacity = '0';
-        setTimeout(() => {
-          slideshow.style.backgroundImage = `url('heroimages/heroimage${index}.jpeg')`;
-          slideshow.style.opacity = '1';
-        }, 1500);
-      }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 
+  // ────────────────────────────────────────────────
+  //                Hero Slideshow
+  // ────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroSlideshow = document.getElementById('heroSlideshow');
+    if (!heroSlideshow) return;
+
+    const totalImages = 25;
+    let current = 0;
+
+    function showImage(index) {
+      heroSlideshow.style.opacity = '0';
+      setTimeout(() => {
+        heroSlideshow.style.backgroundImage = `url('heroimages/heroimage${index}.jpeg')`;
+        heroSlideshow.style.opacity = '1';
+      }, 1500);
+    }
+
+    showImage(current);
+
+    setInterval(() => {
+      current = (current + 1) % totalImages;
       showImage(current);
+    }, 8000);
 
-      setInterval(() => {
-        current = (current + 1) % totalImages;
-        showImage(current);
-      }, 8000);
+    // ────────────────────────────────────────────────
+    //                Featured Artists + Artwork Sliders
+    // ────────────────────────────────────────────────
+    initSlider('featuredSlider');
+    initSlider('artworkSlider');
+  });
 
-      startAutoPlay('featuredSlider', 10000);
-      startAutoPlay('artworkSlider', 10000);
-    });
+  function initSlider(sliderId) {
+    const slider = document.getElementById(sliderId);
+    if (!slider) return;
 
-    function nextSlide(sliderId) {
-      const slider = document.getElementById(sliderId);
-      if (slider) {
-        slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+    let autoPlayTimeout = null;
+    const interval = 10000; // 10 seconds
+
+    function next() {
+      slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+    }
+
+    function prev() {
+      slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimeout = setTimeout(() => {
+        next();
+        startAutoPlay();
+      }, interval);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimeout) {
+        clearTimeout(autoPlayTimeout);
+        autoPlayTimeout = null;
       }
     }
 
-    function prevSlide(sliderId) {
-      const slider = document.getElementById(sliderId);
-      if (slider) {
-        slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
-      }
+    // Controls
+    const prevBtn = document.querySelector(`[onclick="prevSlide('${sliderId}')"]`);
+    const nextBtn = document.querySelector(`[onclick="nextSlide('${sliderId}')"]`);
+
+    if (prevBtn) prevBtn.onclick = prev;
+    if (nextBtn) nextBtn.onclick = next;
+
+    // Start auto play
+    setTimeout(startAutoPlay, 3000);
+
+    // Pause on hover
+    slider.addEventListener('mouseenter', stopAutoPlay);
+    slider.addEventListener('mouseleave', startAutoPlay);
+  }
+
+  // Make functions available globally (for onclick)
+  window.nextSlide = function(sliderId) {
+    const slider = document.getElementById(sliderId);
+    if (slider) {
+      slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
     }
+  };
 
-    function startAutoPlay(sliderId, interval = 10000) {
-      const slider = document.getElementById(sliderId);
-      if (!slider) return;
-
-      let timeoutId = null;
-
-      function run() {
-        nextSlide(sliderId);
-        timeoutId = setTimeout(run, interval);
-      }
-
-      timeoutId = setTimeout(run, 3000);
-
-      slider.addEventListener('mouseenter', () => {
-        if (timeoutId) clearTimeout(timeoutId);
-      });
-
-      slider.addEventListener('mouseleave', () => {
-        if (!timeoutId) {
-          timeoutId = setTimeout(run, 2000);
-        }
-      });
+  window.prevSlide = function(sliderId) {
+    const slider = document.getElementById(sliderId);
+    if (slider) {
+      slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
     }
-  </script>
+  };
+</script>
 
 </body>
 </html>
