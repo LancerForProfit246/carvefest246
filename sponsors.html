@@ -47,49 +47,6 @@
     nav ul li a { text-decoration: none; color: var(--dark-gray); font-weight: 500; transition: color 0.3s; }
     nav ul li a:hover, nav ul li a.active { color: var(--forest-green); }
 
-    .header-buttons {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .btn-primary {
-      background-color: var(--forest-green);
-      color: white;
-      border: none;
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      font-size: 1.6rem;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .btn-primary:hover {
-      background-color: #1e5c2d;
-      transform: scale(1.08);
-    }
-
-    .btn-primary[title]:hover::after {
-      content: attr(title);
-      position: absolute;
-      bottom: -36px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #333;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      white-space: nowrap;
-      pointer-events: none;
-      z-index: 10;
-    }
-
     section { padding: 4rem 5%; }
     .section-header { text-align: center; margin-bottom: 2.5rem; }
     .section-header h2 { font-size: 2.6rem; color: var(--dark-brown); margin-bottom: 0.6rem; }
@@ -126,44 +83,23 @@
       font-size: 1.4rem;
     }
 
-    /* ────────────────────────────────────────────────
-       Horizontal Logo Carousel
-    ──────────────────────────────────────────────── */
-    .sponsors-carousel {
+    /* Sponsor logos – grid layout (no horizontal scroll) */
+    .sponsors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2.5rem;
       max-width: 1200px;
       margin: 0 auto 4rem;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      padding: 1rem 0;
-      scrollbar-width: thin;
-      scrollbar-color: var(--forest-green) var(--light-gray);
-    }
-
-    .sponsors-carousel::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .sponsors-carousel::-webkit-scrollbar-thumb {
-      background: var(--forest-green);
-      border-radius: 4px;
-    }
-
-    .logos-container {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      min-width: max-content; /* allows horizontal scroll */
+      justify-items: center;
     }
 
     .sponsor-logo {
-      flex: 0 0 auto;
       text-align: center;
     }
 
     .sponsor-logo img {
-      width: 80px;          /* base size ~50-80px for visibility */
-      height: 80px;
+      width: 140px;
+      height: 140px;
       object-fit: contain;
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
       transition: transform 0.3s ease;
@@ -173,15 +109,14 @@
       transform: scale(1.15);
     }
 
-    /* Prominence adjustments: larger for top sponsors */
     .sponsor-logo.prominent img {
-      width: 120px;
-      height: 120px;
+      width: 220px;
+      height: 220px;
     }
 
     .sponsor-logo.secondary img {
-      width: 100px;
-      height: 100px;
+      width: 180px;
+      height: 180px;
     }
 
     .contact-section {
@@ -267,9 +202,23 @@
     @media (max-width: 900px) {
       header { flex-direction: column; padding: 1.2rem; gap: 1rem; }
       nav ul { flex-wrap: wrap; justify-content: center; }
-      .logos-container { gap: 1.5rem; }
-      .sponsor-logo img { width: 70px; height: 70px; }
-      .sponsor-logo.prominent img { width: 100px; height: 100px; }
+      .sponsors-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 2rem;
+      }
+      .sponsor-logo img { width: 110px; height: 110px; }
+      .sponsor-logo.prominent img { width: 160px; height: 160px; }
+      .sponsor-logo.secondary img { width: 135px; height: 135px; }
+    }
+
+    @media (max-width: 600px) {
+      .sponsors-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1.5rem;
+      }
+      .sponsor-logo img { width: 90px; height: 90px; }
+      .sponsor-logo.prominent img { width: 130px; height: 130px; }
+      .sponsor-logo.secondary img { width: 110px; height: 110px; }
     }
   </style>
 </head>
@@ -287,8 +236,6 @@
         <li><a href="contacts.html">Contact</a></li>
       </ul>
     </nav>
-   
-
   </header>
 
   <section>
@@ -312,38 +259,35 @@
       <h2>SPONSORS</h2>
     </div>
 
-    <div class="sponsors-carousel">
-      <div class="logos-container">
-        <!-- Most prominent: Agrofest & NCF larger -->
-        <div class="sponsor-logo prominent">
-          <img src="AGROFEST LOGO PNG.png" alt="AGROFEST">
-        </div>
-        <div class="sponsor-logo prominent">
-          <img src="NCF mark.png" alt="NCF">
-        </div>
+    <div class="sponsors-grid">
+      <!-- Most prominent: Agrofest & NCF larger -->
+      <div class="sponsor-logo prominent">
+        <img src="AGROFEST LOGO PNG.png" alt="AGROFEST">
+      </div>
+      <div class="sponsor-logo prominent">
+        <img src="NCF mark.png" alt="NCF">
+      </div>
 
-        <!-- Next level -->
-        <div class="sponsor-logo secondary">
-          <img src="REMNANT CONCEPTS LOGO.jpg" alt="Remnant Concepts">
-        </div>
-        <div class="sponsor-logo secondary">
-          <img src="cedi.jpeg" alt="CEDI"> <!-- assuming cedi.jpeg is your CEDI logo -->
-        </div>
+      <!-- Next level -->
+      <div class="sponsor-logo secondary">
+        <img src="REMNANT CONCEPTS LOGO.jpg" alt="Remnant Concepts">
+      </div>
+      <div class="sponsor-logo secondary">
+        <img src="cedi.jpeg" alt="CEDI">
+      </div>
 
-        <!-- Others standard size -->
-        <div class="sponsor-logo">
-          <img src="ACE H & B Logo.png" alt="ACE H & B"> <!-- placeholder; replace with actual ACE logo filename -->
-        </div>
-        <div class="sponsor-logo">
-          <img src="DaBudzman Logo.jpg" alt="DaBudzman">
-        </div>
-        <div class="sponsor-logo">
-          <img src="Inferno Logo.png" alt="Inferno">
-        </div>
-        <div class="sponsor-logo">
-          <img src="MIS LOGO.jpg" alt="MIS">
-        </div>
-        <!-- Add Kreative Karving if you have a logo file; e.g. <img src="sponsors/kreative-karving.png" alt="Kreative Karving"> -->
+      <!-- Others standard size -->
+      <div class="sponsor-logo">
+        <img src="ACE H & B Logo.png" alt="ACE H & B">
+      </div>
+      <div class="sponsor-logo">
+        <img src="DaBudzman Logo.jpg" alt="DaBudzman">
+      </div>
+      <div class="sponsor-logo">
+        <img src="Inferno Logo.png" alt="Inferno">
+      </div>
+      <div class="sponsor-logo">
+        <img src="MIS LOGO.jpg" alt="MIS">
       </div>
     </div>
   </section>
@@ -359,17 +303,16 @@
     
   </section>
 
- <footer>
+  <footer>
     <div class="footer-content">
       <div class="footer-section">
         <h3>CARVEFEST 2026</h3>
-      <div style=" display: flex; flex-direction:column;">
-       
-       
-      </div>
+        <div style="display: flex; flex-direction:column;">
+          <img src="cedi.jpeg" height="70px" width="150px" alt="CARVEFEST 2026">
+          <img src="cediflow.jpeg" height="50px" width="150px" alt="CARVEFEST 2026">
+        </div>
         <p>Mahogany Mound Studios in association with Artists Alliance Barbados</p>
         <p>Inside AGROFEST • February 27 – March 1, 2026</p>
-         <img src="cedi.jpeg" height="70px" width="150px" alt="CARVEFEST 2026">
         <div class="social-icons" style="margin-top:1.2rem;">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
