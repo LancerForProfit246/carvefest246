@@ -47,7 +47,6 @@
     nav ul li a { text-decoration: none; color: var(--dark-gray); font-weight: 500; transition: color 0.3s; }
     nav ul li a:hover, nav ul li a.active { color: var(--forest-green); }
 
-    
     .header-buttons {
       display: flex;
       align-items: center;
@@ -91,7 +90,6 @@
       z-index: 10;
     }
 
-
     section { padding: 4rem 5%; }
     .section-header { text-align: center; margin-bottom: 2.5rem; }
     .section-header h2 { font-size: 2.6rem; color: var(--dark-brown); margin-bottom: 0.6rem; }
@@ -128,57 +126,62 @@
       font-size: 1.4rem;
     }
 
-    .tiers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+    /* ────────────────────────────────────────────────
+       Horizontal Logo Carousel
+    ──────────────────────────────────────────────── */
+    .sponsors-carousel {
       max-width: 1200px;
       margin: 0 auto 4rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 1rem 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--forest-green) var(--light-gray);
     }
 
-    .tier-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
+    .sponsors-carousel::-webkit-scrollbar {
+      height: 8px;
     }
 
-    .tier-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-    }
-
-    .tier-header {
+    .sponsors-carousel::-webkit-scrollbar-thumb {
       background: var(--forest-green);
-      color: white;
-      padding: 1.4rem;
+      border-radius: 4px;
+    }
+
+    .logos-container {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      min-width: max-content; /* allows horizontal scroll */
+    }
+
+    .sponsor-logo {
+      flex: 0 0 auto;
       text-align: center;
-      font-size: 1.5rem;
-      font-weight: 600;
     }
 
-    .tier-content {
-      padding: 1.8rem;
+    .sponsor-logo img {
+      width: 80px;          /* base size ~50-80px for visibility */
+      height: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+      transition: transform 0.3s ease;
     }
 
-    .tier-content ul {
-      list-style: none;
-      margin: 1rem 0;
+    .sponsor-logo img:hover {
+      transform: scale(1.15);
     }
 
-    .tier-content ul li {
-      margin: 0.8rem 0;
-      padding-left: 1.8rem;
-      position: relative;
+    /* Prominence adjustments: larger for top sponsors */
+    .sponsor-logo.prominent img {
+      width: 120px;
+      height: 120px;
     }
 
-    .tier-content ul li::before {
-      content: "•";
-      color: var(--accent-orange);
-      position: absolute;
-      left: 0;
-      font-weight: bold;
+    .sponsor-logo.secondary img {
+      width: 100px;
+      height: 100px;
     }
 
     .contact-section {
@@ -264,6 +267,9 @@
     @media (max-width: 900px) {
       header { flex-direction: column; padding: 1.2rem; gap: 1rem; }
       nav ul { flex-wrap: wrap; justify-content: center; }
+      .logos-container { gap: 1.5rem; }
+      .sponsor-logo img { width: 70px; height: 70px; }
+      .sponsor-logo.prominent img { width: 100px; height: 100px; }
     }
   </style>
 </head>
@@ -281,13 +287,7 @@
         <li><a href="contacts.html">Contact</a></li>
       </ul>
     </nav>
-   <div class="header-buttons">
-      <button class="btn-primary" title="">
-        <a href="shop.html" style="color:white; text-decoration:none;">
-          <i class="fas fa-cart-shopping"></i>
-        </a>
-      </button>
-    </div>
+   
 
   </header>
 
@@ -309,50 +309,41 @@
     </div>
 
     <div class="section-header">
-      <h2>Sponsor Tiers</h2>
+      <h2>SPONSORS</h2>
     </div>
 
-    <div class="tiers-grid">
-      <div class="tier-card">
-        <div class="tier-header">Title Sponsor</div>
-        <div class="tier-content">
-          <ul>
-            <li>Category ownership</li>
-            <li>Premium visibility</li>
-            <li>Buyer insights & reporting</li>
-          </ul>
+    <div class="sponsors-carousel">
+      <div class="logos-container">
+        <!-- Most prominent: Agrofest & NCF larger -->
+        <div class="sponsor-logo prominent">
+          <img src="AGROFEST LOGO PNG.png" alt="AGROFEST">
         </div>
-      </div>
+        <div class="sponsor-logo prominent">
+          <img src="NCF mark.png" alt="NCF">
+        </div>
 
-      <div class="tier-card">
-        <div class="tier-header">Gold Sponsor</div>
-        <div class="tier-content">
-          <ul>
-            <li>Large booth branding</li>
-            <li>Featured mentions</li>
-            <li>Engagement access</li>
-          </ul>
+        <!-- Next level -->
+        <div class="sponsor-logo secondary">
+          <img src="REMNANT CONCEPTS LOGO.jpg" alt="Remnant Concepts">
         </div>
-      </div>
+        <div class="sponsor-logo secondary">
+          <img src="cedi.jpeg" alt="CEDI"> <!-- assuming cedi.jpeg is your CEDI logo -->
+        </div>
 
-      <div class="tier-card">
-        <div class="tier-header">Silver Sponsor</div>
-        <div class="tier-content">
-          <ul>
-            <li>Targeted visibility</li>
-            <li>Buyer interaction opportunities</li>
-          </ul>
+        <!-- Others standard size -->
+        <div class="sponsor-logo">
+          <img src="ACE H & B Logo.png" alt="ACE H & B"> <!-- placeholder; replace with actual ACE logo filename -->
         </div>
-      </div>
-
-      <div class="tier-card">
-        <div class="tier-header">Community/Product Partner</div>
-        <div class="tier-content">
-          <ul>
-            <li>Sampling & product placement</li>
-            <li>Brand listing & recognition</li>
-          </ul>
+        <div class="sponsor-logo">
+          <img src="DaBudzman Logo.jpg" alt="DaBudzman">
         </div>
+        <div class="sponsor-logo">
+          <img src="Inferno Logo.png" alt="Inferno">
+        </div>
+        <div class="sponsor-logo">
+          <img src="MIS LOGO.jpg" alt="MIS">
+        </div>
+        <!-- Add Kreative Karving if you have a logo file; e.g. <img src="sponsors/kreative-karving.png" alt="Kreative Karving"> -->
       </div>
     </div>
   </section>
@@ -360,7 +351,7 @@
   <section class="contact-section">
     <h3>Become a Partner</h3>
     <p>Contact us today to discuss how your brand can support Barbadian talent and creativity:</p>
-    <p><span class="email">carvefest@carvefest.com</span></p>
+    <p><span class="email">carvefest@gmail.com</span></p>
     <p><span class="phone">(246) 230-9091</span></p>
   </section>
 
@@ -373,11 +364,12 @@
       <div class="footer-section">
         <h3>CARVEFEST 2026</h3>
       <div style=" display: flex; flex-direction:column;">
-        <img src="cedi.jpeg" height="70px" width="150px" alt="CARVEFEST 2026">
-        <img src="cediflow.jpeg" height="50px" width="150px" alt="CARVEFEST 2026">
+       
+       
       </div>
         <p>Mahogany Mound Studios in association with Artists Alliance Barbados</p>
         <p>Inside AGROFEST • February 27 – March 1, 2026</p>
+         <img src="cedi.jpeg" height="70px" width="150px" alt="CARVEFEST 2026">
         <div class="social-icons" style="margin-top:1.2rem;">
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
@@ -394,7 +386,7 @@
 
       <div class="footer-section">
         <h3>Contact</h3>
-        <p><i class="fas fa-envelope"></i> carvefest@carvefest.com</p>
+        <p><i class="fas fa-envelope"></i> carvefest@gmail.com</p>
         <p><i class="fas fa-phone"></i> +1 (246) 230-9091</p>
       </div>
     </div>
