@@ -494,7 +494,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Adrian Vernarce Forde.jpg" alt="Artwork by Adrian Vernarce Forde">
+              <img src="woodworkers/Adrian Vernarce Forde.jpg" alt="Artwork by Adrian Vernarce Forde">
             </div>
             <div class="artwork-caption">Adrian Vernarce Forde</div>
           </div>
@@ -503,7 +503,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Ashanti Trotman.jpeg" alt="Artwork by Ashanti Trotman">
+              <img src="woodworkers/Ashanti Trotman.jpeg" alt="Artwork by Ashanti Trotman">
             </div>
             <div class="artwork-caption">Ashanti Trotman</div>
           </div>
@@ -512,7 +512,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="John Birdman Gibbons.jpg" alt="Artwork by John Birdman Gibbons">
+              <img src="woodworkers/John Birdman Gibbons.jpg" alt="Artwork by John Birdman Gibbons">
             </div>
             <div class="artwork-caption">John Birdman Gibbons</div>
           </div>
@@ -521,7 +521,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Kenrick Barrow.jpeg" alt="Artwork by Kenrick Barrow">
+              <img src="woodworkers/Kenrick Barrow.jpeg" alt="Artwork by Kenrick Barrow">
             </div>
             <div class="artwork-caption">Kenrick Barrow</div>
           </div>
@@ -530,7 +530,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Marlon Ilon Skeete.jpeg" alt="Artwork by Marlon Ilon Skeete">
+              <img src="woodworkers/Marlon Ilon Skeete.jpeg" alt="Artwork by Marlon Ilon Skeete">
             </div>
             <div class="artwork-caption">Marlon Ilon Skeete</div>
           </div>
@@ -539,7 +539,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Marlon Waterman.jpeg" alt="Artwork by Marlon Waterman">
+              <img src="woodworkers/Marlon Waterman.jpeg" alt="Artwork by Marlon Waterman">
             </div>
             <div class="artwork-caption">Marlon Waterman</div>
           </div>
@@ -548,7 +548,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Medford.jpg" alt="Artwork by Medford">
+              <img src="woodworkers/Medford.jpg" alt="Artwork by Medford">
             </div>
             <div class="artwork-caption">Medford</div>
           </div>
@@ -557,7 +557,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Onkphra Wells.jpg" alt="Artwork by Onkphra Wells">
+              <img src="woodworkers/Onkphra Wells.jpg" alt="Artwork by Onkphra Wells">
             </div>
             <div class="artwork-caption">Onkphra Wells</div>
           </div>
@@ -566,7 +566,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Rawle Buju Ross.jpg" alt="Artwork by Rawle Buju Ross">
+              <img src="woodworkers/Rawle Buju Ross.jpg" alt="Artwork by Rawle Buju Ross">
             </div>
             <div class="artwork-caption">Rawle Buju Ross</div>
           </div>
@@ -575,7 +575,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Shaquille Hewitt.png" alt="Artwork by Shaquille Hewitt">
+              <img src="woodworkers/Shaquille Hewitt.png" alt="Artwork by Shaquille Hewitt">
             </div>
             <div class="artwork-caption">Shaquille Hewitt</div>
           </div>
@@ -584,7 +584,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Teddy Kirton.png" alt="Artwork by Teddy Kirton">
+              <img src="woodworkers/Teddy Kirton.png" alt="Artwork by Teddy Kirton">
             </div>
             <div class="artwork-caption">Teddy Kirton</div>
           </div>
@@ -593,7 +593,7 @@
         <div class="slide">
           <div class="artwork-card">
             <div class="artwork-image">
-              <img src="Tito Clarke.jpg" alt="Artwork by Tito Clarke">
+              <img src="woodworkers/Tito Clarke.jpg" alt="Artwork by Tito Clarke">
             </div>
             <div class="artwork-caption">Tito Clarke</div>
           </div>
@@ -633,7 +633,7 @@
     <div class="cards-container">
       <div class="card">
         <div class="card-image">
-          <img src="artist11.jpg" alt="Live wood carving demonstration">
+          <img src="artists/artist11.jpg" alt="Live wood carving demonstration">
         </div>
         <div class="card-content">
           <h3>Live Carving Demonstrations</h3>
@@ -724,7 +724,7 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Hero Slideshow – still using artists/ folder
+    // Hero Slideshow
     document.addEventListener('DOMContentLoaded', () => {
       const heroSlideshow = document.getElementById('heroSlideshow');
       if (!heroSlideshow) return;
@@ -801,8 +801,10 @@
       if (prevBtn) prevBtn.onclick = prev;
       if (nextBtn) nextBtn.onclick = next;
 
+      // Start auto-play after a short initial delay
       setTimeout(startAutoPlay, 1500);
 
+      // Pause on hover / interaction
       slider.addEventListener('mouseenter', stopAutoPlay);
       slider.addEventListener('mouseleave', startAutoPlay);
     }
