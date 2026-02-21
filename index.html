@@ -238,12 +238,24 @@
       line-height: 1;
     }
 
+    /* General cards container (used elsewhere if needed) */
     .cards-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 2.5rem;
       max-width: 1400px;
-      margin: 0 auto 0 5rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Specific 2×2 grid for CARVEFEST Experience */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 0 1rem;
     }
 
@@ -443,10 +455,30 @@
       font-size: 0.95rem;
     }
 
-    @media (max-width: 1100px) { .cards-container { margin: 0 auto 0 3.5rem; } }
-    @media (max-width: 900px)  { .cards-container { margin: 0 auto 0 2.5rem; } .card-image { height: 460px; } }
-    @media (max-width: 700px)  { .cards-container { margin: 0 1.5rem; padding: 0; gap: 2rem; } .card-image { height: 420px; } }
-    @media (max-width: 500px)  { .cards-container { margin: 0 1rem; } .card-image { height: 380px; } }
+    /* Responsive adjustments */
+    @media (max-width: 1100px) {
+      .cards-container { margin: 0 auto 0 3.5rem; }
+      .experience-grid { max-width: 1000px; }
+    }
+
+    @media (max-width: 900px) {
+      .cards-container { margin: 0 auto 0 2.5rem; }
+      .card-image { height: 460px; }
+    }
+
+    @media (max-width: 768px) {
+      .experience-grid {
+        grid-template-columns: 1fr;           /* Stack vertically on tablets/phones */
+        gap: 2rem;
+      }
+      .cards-container { margin: 0 1.5rem; padding: 0; gap: 2rem; }
+      .card-image { height: 420px; }
+    }
+
+    @media (max-width: 500px) {
+      .cards-container { margin: 0 1rem; }
+      .card-image { height: 380px; }
+    }
   </style>
 </head>
 <body>
@@ -490,155 +522,23 @@
     <h2>Featured Artists 2026</h2>
     <div class="slider-wrapper">
       <div class="slider" id="featuredSlider">
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Adrian Vernarce Forde.jpg" alt="Artwork by Adrian Vernarce Forde">
-            </div>
-            <div class="artwork-caption">Adrian Vernarce Forde</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/AshantiTrotman.jpeg" alt="Artwork by Ashanti Trotman">
-            </div>
-            <div class="artwork-caption">Ashanti Trotman</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/John Birdman Gibbons.jpg" alt="Artwork by John Birdman Gibbons">
-            </div>
-            <div class="artwork-caption">John Birdman Gibbons</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Kenrick Barrow.jpeg" alt="Artwork by Kenrick Barrow">
-            </div>
-            <div class="artwork-caption">Kenrick Barrow</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Marlon Ilon Skeete.jpeg" alt="Artwork by Marlon Ilon Skeete">
-            </div>
-            <div class="artwork-caption">Marlon Ilon Skeete</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Marlon Waterman.jpeg" alt="Artwork by Marlon Waterman">
-            </div>
-            <div class="artwork-caption">Marlon Waterman</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Medford.jpg" alt="Artwork by Reginal Medford">
-            </div>
-            <div class="artwork-caption">Reginal Medford</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Onkphra Wells.jpg" alt="Artwork by Onkphra Wells">
-            </div>
-            <div class="artwork-caption">Onkphra Wells</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Rawle Buju Ross.jpg" alt="Artwork by Rawle Buju Ross">
-            </div>
-            <div class="artwork-caption">Rawle Buju Ross</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Shaquille Hewitt.png" alt="Artwork by Shaquille Hewitt">
-            </div>
-            <div class="artwork-caption">Shaquille Hewitt</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Teddy Kirton.png" alt="Artwork by Teddy Kirton">
-            </div>
-            <div class="artwork-caption">Teddy Kirton</div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/Tito Clarke.jpg" alt="Artwork by Tito Clarke">
-            </div>
-            <div class="artwork-caption">Tito Clarke</div>
-          </div>
-        </div>
-
-         <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/piercestclaircain.jpeg" alt="Artwork by Pierson St Clair Cain">
-            </div>
-            <div class="artwork-caption">Pierson St Clair Cain </div>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/raegarnes.jpeg" alt="Artwork by Rae Garnes">
-            </div>
-            <div class="artwork-caption">Rae Garnes </div>
-          </div>
-        </div>
-
-
-         <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/robertcampbell.jpeg" alt="Artwork by Robert Campbell ">
-            </div>
-            <div class="artwork-caption">Robert Campbell  </div>
-          </div>
-        </div>
-
-
-         <div class="slide">
-          <div class="artwork-card">
-            <div class="artwork-image">
-              <img src="woodworkers/nickhughes.jpeg" alt="Artwork by Nick Hughes ">
-            </div>
-            <div class="artwork-caption"> Nick Hughes </div>
-          </div>
-        </div>
-
-        
-        
+        <!-- Artist slides remain unchanged -->
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Adrian Vernarce Forde.jpg" alt="Artwork by Adrian Vernarce Forde"></div><div class="artwork-caption">Adrian Vernarce Forde</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/AshantiTrotman.jpeg" alt="Artwork by Ashanti Trotman"></div><div class="artwork-caption">Ashanti Trotman</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/John Birdman Gibbons.jpg" alt="Artwork by John Birdman Gibbons"></div><div class="artwork-caption">John Birdman Gibbons</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Kenrick Barrow.jpeg" alt="Artwork by Kenrick Barrow"></div><div class="artwork-caption">Kenrick Barrow</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Marlon Ilon Skeete.jpeg" alt="Artwork by Marlon Ilon Skeete"></div><div class="artwork-caption">Marlon Ilon Skeete</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Marlon Waterman.jpeg" alt="Artwork by Marlon Waterman"></div><div class="artwork-caption">Marlon Waterman</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Medford.jpg" alt="Artwork by Reginal Medford"></div><div class="artwork-caption">Reginal Medford</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Onkphra Wells.jpg" alt="Artwork by Onkphra Wells"></div><div class="artwork-caption">Onkphra Wells</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Rawle Buju Ross.jpg" alt="Artwork by Rawle Buju Ross"></div><div class="artwork-caption">Rawle Buju Ross</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Shaquille Hewitt.png" alt="Artwork by Shaquille Hewitt"></div><div class="artwork-caption">Shaquille Hewitt</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Teddy Kirton.png" alt="Artwork by Teddy Kirton"></div><div class="artwork-caption">Teddy Kirton</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/Tito Clarke.jpg" alt="Artwork by Tito Clarke"></div><div class="artwork-caption">Tito Clarke</div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/piercestclaircain.jpeg" alt="Artwork by Pierson St Clair Cain"></div><div class="artwork-caption">Pierson St Clair Cain </div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/raegarnes.jpeg" alt="Artwork by Rae Garnes"></div><div class="artwork-caption">Rae Garnes </div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/robertcampbell.jpeg" alt="Artwork by Robert Campbell "></div><div class="artwork-caption">Robert Campbell  </div></div></div>
+        <div class="slide"><div class="artwork-card"><div class="artwork-image"><img src="woodworkers/nickhughes.jpeg" alt="Artwork by Nick Hughes "></div><div class="artwork-caption"> Nick Hughes </div></div></div>
       </div>
       <button class="slider-prev" onclick="prevSlide('featuredSlider')">❮</button>
       <button class="slider-next" onclick="nextSlide('featuredSlider')">❯</button>
@@ -670,18 +570,15 @@
       <p>An immersive celebration of Barbadian mahogany craft, culture, and creativity.</p>
     </div>
 
-    <div class="cards-container">
+    <div class="experience-grid">
       <div class="card">
-        
         <div class="card-image">
           <img src="livecarving.png" alt="Live wood carving demonstration">
         </div>
-        
         <div class="card-content">
           <h3>Live Carving Demonstrations</h3>
           <p>Watch master artisans transform raw wood into stunning sculptures right before your eyes.</p>
         </div>
-        
       </div>
 
       <div class="card">
@@ -704,19 +601,16 @@
         </div>
       </div>
 
-       <div class="card">
+      <div class="card">
         <div class="card-image">
-          <img src="schoolshowcase.jpg" alt="Curated wood carving exhibition">
+          <img src="schoolshowcase.jpg" alt="School wood carving showcase">
         </div>
         <div class="card-content">
           <h3>School Showcase</h3>
-          <p>Excellent work for students to view.</p>
+          <p>Excellent work for students to view and be inspired by the next generation.</p>
         </div>
       </div>
-      
     </div>
-
-    
   </section>
 
   <footer>
@@ -730,8 +624,7 @@
           <a href="https://www.facebook.com/carvefest246"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.instagram.com/carvefest/"><i class="fab fa-instagram"></i></a>
           <a href="https://www.youtube.com/@CarveFest"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@carvefest"><i class="fab fa-tiktok"></i></a>
-          
+          <a href="https://www.tiktok.com/@carvefest"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
 
@@ -822,13 +715,13 @@
       initSlider('featuredSlider');
     });
 
-    // Featured Artists auto-slider – 4 seconds per slide
+    // Featured Artists auto-slider
     function initSlider(sliderId) {
       const slider = document.getElementById(sliderId);
       if (!slider) return;
 
       let autoPlayTimeout = null;
-      const interval = 4000;  // 4 seconds per artist
+      const interval = 4000;
 
       function next() {
         slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
@@ -847,10 +740,7 @@
       }
 
       function stopAutoPlay() {
-        if (autoPlayTimeout) {
-          clearTimeout(autoPlayTimeout);
-          autoPlayTimeout = null;
-        }
+        if (autoPlayTimeout) clearTimeout(autoPlayTimeout);
       }
 
       const prevBtn = document.querySelector(`[onclick="prevSlide('${sliderId}')"]`);
@@ -859,10 +749,8 @@
       if (prevBtn) prevBtn.onclick = prev;
       if (nextBtn) nextBtn.onclick = next;
 
-      // Start auto-play after a short initial delay
       setTimeout(startAutoPlay, 1500);
 
-      // Pause on hover / interaction
       slider.addEventListener('mouseenter', stopAutoPlay);
       slider.addEventListener('mouseleave', startAutoPlay);
     }
